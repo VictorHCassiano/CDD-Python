@@ -8,23 +8,27 @@ class Conta:
         self.limitecredito = 0
         self.auxlimitecredito = 0
     def depositar(self, deposito):
+        
         if self.status == False:
             print("Conta desativada!!! , procure a agencia mais proxima para ativar")
         else:
-                self.auxlimitecredito = self.auxlimitecredito - deposito
-                if self.auxlimitecredito >= 0:
-                    self.auxlimitecredito = 0
+                aux = deposito
+                deposito -= abs(self.auxlimitecredito)
+                self.auxlimitecredito += aux
+                if self.auxlimitecredito>self.limitecredito:
+                    self.auxlimitecredito = self.limitecredito
                 if deposito < 0:
-                    deposito = 0
+                     deposito = 0
 
                 self.saldo += deposito
-                print(f"Depositado com sucesso o saldo agora é {self.saldo}")
+                print(f"Depositado com sucesso! O saldo agora é {self.saldo} e o limite é {self.auxlimitecredito}")
+
 
     def sacar(self, saque):
         if self.status == True:
             if self.saldo >= saque:
                 self.saldo = self.saldo - saque
-                print(f"O saldo agora é {self.saldo}")
+                print(f"Saldo:{self.saldo} Limite:{self.auxlimitecredito}")
             elif self.saldo+self.limitecredito >= saque:
                 self.auxlimitecredito = self.saldo - saque
                 self.saldo = 0
@@ -67,10 +71,11 @@ class Conta:
 cont = Conta(10,"AAA", "Corrente")
 cont.ativarconta()
 print(cont.__dict__)
+cont.ativarlimitecredito(200)
 print(cont.__dict__)
-cont.ativarlimitecredito(2000)
-cont.depositar(3000)
-cont.sacar(2000)
-cont.sacar(1100)
+cont.sacar(200)
 cont.depositar(200)
-cont.verificarsaldo()
+cont.depositar(1000)
+cont.sacar(100)
+cont.sacar(1000)
+cont.depositar(10)

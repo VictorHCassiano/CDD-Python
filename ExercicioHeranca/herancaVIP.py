@@ -10,7 +10,7 @@ class IngressoVIP:
     def __init__(self, reais):
         super().__init__(reais)
 
-    def imprimevalor(self):
-        print(f"O valor do ingresso  é {self.reais * 1, 5}")
+    def imprimevalor(self,incremento):
+        print(f"O valor do ingresso  é {self.reais * incremento}")
 
 

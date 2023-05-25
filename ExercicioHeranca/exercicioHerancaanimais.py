@@ -1,35 +1,50 @@
-A = []
-contador = 0
-media = 0
+class Animal:
+    def __init__(self, nome, cor, ):
+        self.nome = nome
+        self.cor = cor
 
-for x in range(10):
-    A.append(int(input("Digite um numero:")))
+    def comer(self):
+        print(f"{self.nome} comendo ...")
 
-menor = A[0]
-maior = A[0]
 
-print(A)
-N1 = int(input("Digite qual numero voce quer saber quantas vezes aparece:"))
-for y in range(10):
-    if N1 == A[y]:
-        contador += 1
+class Gato(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
 
-print("O numero", N1, "aparece", contador, "vezes")
-print("Os numeros pares são:")
-for z in range(10):
-    if A[z] % 2 == 0:
-        print(A[z])
+    def emitirSom(self):
+        print(f"O {self.nome} foi miando...")
 
-for x in range(10):
-    if menor > A[x]:
-        menor = A[x]
-    if maior < A[x]:
-        maior = A[x]
+    def comer(self,comida):
+        print(f"{self.nome} comendo {comida}")
 
-    media += A[x]
-print("Maior:", maior, "Menor:", menor)
-print("A média é", media/10)
-print("Os numeros maiores que a media são:")
-for i in range(10):
-    if A[i] > media/10:
-        print(A[i], end=" ")
+class Cachorro(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def emitirSom(self):
+        print(f" {self.nome} foi latindo ...")
+
+    def comer(self,comida):
+        print(f"{self.nome} comendo {comida}")
+
+
+class Vaca(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def emitirSom(self):
+        print(f" {self.nome} foi mugindo ...")
+
+
+class Coelho(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def emitirSom(self):
+        print(f" {self.nome} foi pulando ...")
+
+
+aaa = Gato("A", "B")
+print(aaa.__dict__)
+print(f"{aaa.nome}")
+aaa.comer("Manga")
